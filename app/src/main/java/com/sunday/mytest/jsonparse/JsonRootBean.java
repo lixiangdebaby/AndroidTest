@@ -1,0 +1,35 @@
+package com.sunday.mytest.jsonparse;
+import androidx.annotation.NonNull;
+
+import java.util.List;
+public class JsonRootBean {
+    private List<Data> data;
+    private int errorCode;
+    private String errorMsg;
+    public void setData(List<Data> data) {
+        this.data = data;
+    }
+    public List<Data> getData() {
+        return data;
+    }
+
+    public void setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
+    }
+    public int getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
+    }
+    public String getErrorMsg() {
+        return errorMsg;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "JsonRootBean{ "+ "data = "+data+ " errorCode = "+errorCode+ "errorMsg = "+errorMsg +" }";
+    }
+}
