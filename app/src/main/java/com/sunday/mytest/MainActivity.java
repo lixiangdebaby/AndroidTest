@@ -3,8 +3,11 @@ package com.sunday.mytest;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,6 +15,10 @@ import android.util.Log;
 import android.widget.ImageView;
 
 import com.sunday.mytest.bitmaptobase64.BitmapTobase64;
+import com.sunday.mytest.networkutil.NetWorkUtil;
+import com.sunday.mytest.okhttptest.OkHttpTest;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
     Bitmap mbitmap = null;
@@ -31,7 +38,14 @@ public class MainActivity extends AppCompatActivity {
         threadBitmapToBase.start();
         mimageView = (ImageView)findViewById(R.id.img_test);
         Log.d(TAG,"mBase64ToBitmap = "+mBase64ToBitmap);
+        boolean isConnect = NetWorkUtil.isConnected(getApplicationContext());
+        Log.d(TAG,"isConnect = "+isConnect);
+        OkHttpTest okHttpTest = new OkHttpTest();
+        okHttpTest.getOkHttpTest();
+        //post 请求
+        okHttpTest.OkHttpPostTestT();
     }
+
     class ThreadBitmapToBase extends Thread{
         @Override
         public void run() {
@@ -66,5 +80,15 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
+    }
+    //判断网络是否正常连接
+    public boolean isNetWorkConnected(Context context){
+        boolean isConnected = false;
+        ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if(networkInfo != null){
+            isConnected = networkInfo.isAvailable();
+        }
+        return  isConnected;
     }
 }
