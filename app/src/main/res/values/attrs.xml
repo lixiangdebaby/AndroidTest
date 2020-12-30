@@ -6,4 +6,14 @@
         <attr name="backgroundHeadColor" format="color" />
         <attr name="ishaveboder" format="boolean" />
     </declare-styleable>
+    <declare-styleable name="InputEditView">
+        <attr name="mInputIcon" format="reference" />
+        <attr name="mInputHint" format="string" />
+        <attr name="mIsPassWord" format="boolean" />
+        <attr name="mImageButtonPassWordSwitch" format="reference" />
+        <attr name="mInputViewBg" format="reference" />
+        <attr name="mInputViewErrBg" format="reference" />
+        <attr name="mEditInputHeight" format="dimension" />
+        <attr name="mEditInputWidth" format="dimension" />
+    </declare-styleable>
 </resources>
